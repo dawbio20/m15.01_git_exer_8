@@ -6,6 +6,7 @@
 package m15.pkg01_git_exer_8;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import static m15.pkg01_git_exer_8.functions.isNumeric;
 
@@ -15,7 +16,7 @@ import static m15.pkg01_git_exer_8.functions.isNumeric;
  */
 public class exer_8_git_calcArrayIntegers {
 
-    private ArrayList<Integer> arrayInt;
+    private ArrayList<Integer> arrayInt = new ArrayList<>();
 
     public ArrayList<Integer> getArrayInt() {
         return arrayInt;
@@ -25,23 +26,23 @@ public class exer_8_git_calcArrayIntegers {
         this.arrayInt = arrayInt;
     }
         
-    private void askForNumbers(int nums) {
+    public void askForNumbers(int nums) {
         String addNumber;       
         
         for (int i = 0; i < nums; i++) {
-            System.out.println("Type the number to calculate:");
+            System.out.println("Type a number to calculate:");
             
             Scanner inKeyboard = new Scanner(System.in);
             addNumber = inKeyboard.nextLine();
             if (!addNumber.trim().isEmpty() && isNumeric(addNumber)) {
-                this.arrayInt.add(Integer.parseInt(addNumber));
+                arrayInt.add(Integer.parseInt(addNumber));
             } else {
                 System.out.println("Error - Number incorrect. Try again.");
             }            
         }
     }
     
-    private int askForOperation() {
+    public int askForOperation() {
         /**
         * 1 => average
         * 2 => maxim
@@ -49,8 +50,8 @@ public class exer_8_git_calcArrayIntegers {
         */
         boolean resultIsNum = false;
         String operation;
-        functions generalFunc = new functions();
-        
+        int result = 0;
+       
         while (resultIsNum == false) {
             System.out.println("Type the operation.");
             System.out.println("1 -> Average");
@@ -60,28 +61,49 @@ public class exer_8_git_calcArrayIntegers {
             Scanner inKeyboard = new Scanner(System.in);
             operation = inKeyboard.nextLine();
             if (!operation.trim().isEmpty() && isNumeric(operation)) {
-                switch (Integer.parseInt(operation)) {
-                    case 1:
-                    
-                    case 2:
-                        
-                    case 3:
-                    
+                switch (operation) {
+                    case "1":
+                        result = calcAverage();
+                        resultIsNum = true;
+                        break;
+                    case "2":
+                        result = calcMaximum();
+                        resultIsNum = true;
+                        break;
+                    case "3":
+                        result = calcMinimum();
+                        resultIsNum = true;
+                        break;
                     default:
-                        System.out.println("Selection incorrecto. Try again.");
-                }
+                        System.out.println("Selection incorrect. Try again.");
+                }                
             } else {
                 System.out.println("Error - Number incorrect. Try again.");
             }
         }
         
-        return 0;
+        return result;
     }
     
-    private static int calcAverage() {
-        return 0;
-    }    
-        
+    private int calcMaximum() {
+        int maxNum;
+        maxNum = Collections.max(arrayInt);
+        return maxNum;
+    }
     
+    private int calcMinimum() {
+        int minNum;
+        minNum = Collections.min(arrayInt);
+        return minNum;
+    }
     
+    private int calcAverage() {
+        int avgNum;
+        Integer tempNum = 0;
+        for(int index = 0; index < arrayInt.size(); index++) {
+            tempNum += arrayInt.get(index);
+        }
+        avgNum = tempNum / arrayInt.size();
+        return avgNum;
+    }
 }

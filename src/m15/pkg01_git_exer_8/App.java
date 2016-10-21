@@ -40,24 +40,18 @@ public class App {
             Scanner inKeyboard = new Scanner(System.in);
             totNumbers = inKeyboard.nextLine();
         
-            if (totNumbers == "exit") {
+            if ("exit".equals(totNumbers)) {
                 resultIsNum = true;
             } else if (!totNumbers.trim().isEmpty() && generalFunc.isNumeric(totNumbers)) {
-                resultNumbers = myCalcInt.askForNumbers(Integer.parseInt(totNumbers));
-                myCalcInt.askForOperation();
-                resultIsNum = true;
+                myCalcInt.askForNumbers(Integer.parseInt(totNumbers));
+                resultNumbers = myCalcInt.askForOperation();
+                System.out.println("Result: "+resultNumbers);
             } else {
                 System.out.println("Error - Number incorrect. Try again");
             }
         }
         
-        
-        System.out.println("Finishing the application");
-        
+        System.out.println("Finishing the application");        
     }
-    
-    
-    
-    
     
 }
