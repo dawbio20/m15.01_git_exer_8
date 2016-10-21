@@ -5,6 +5,7 @@
  */
 package m15.pkg01_git_exer_8;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -18,6 +19,12 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        /**
+        * 
+        */        
+        exer_8_git_calcArrayIntegers myCalcInt = new exer_8_git_calcArrayIntegers();
+        functions generalFunc = new functions();
         
         int resultNumbers;        
         boolean resultIsNum = false;
@@ -35,9 +42,9 @@ public class App {
         
             if (totNumbers == "exit") {
                 resultIsNum = true;
-            } else if (!totNumbers.trim().isEmpty() && isNumeric(totNumbers)) {
-                resultNumbers = askForNumbers(Integer.parseInt(totNumbers));
-                askForOperation();
+            } else if (!totNumbers.trim().isEmpty() && generalFunc.isNumeric(totNumbers)) {
+                resultNumbers = myCalcInt.askForNumbers(Integer.parseInt(totNumbers));
+                myCalcInt.askForOperation();
                 resultIsNum = true;
             } else {
                 System.out.println("Error - Number incorrect. Try again");
@@ -49,41 +56,8 @@ public class App {
         
     }
     
-    private static int askForNumbers(int nums) {
-        String addNumber;
-        int resultNumbers = 0;
-        
-        for (int i = 0; i < nums; i++) {
-            System.out.println("Type the number to calculate:");
-            //Ask for a company name
-            Scanner inKeyboard = new Scanner(System.in);
-            addNumber = inKeyboard.nextLine();
-            if (!addNumber.trim().isEmpty() && isNumeric(addNumber)) {
-                resultNumbers += Integer.parseInt(addNumber);
-            } else {
-                System.out.println("Error - Number incorrect. Try again.");
-            }            
-        }
-        return resultNumbers;
-    }
     
-    private static int askForOperation() {
-        
-        return 0;
-    }
-        
-    /**
-     * Evaluate if a string is numeric
-     * @param str String
-     * @return boolean True if the string is numeric, false otherwise
-     */
-    private static boolean isNumeric(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
+    
+    
     
 }
