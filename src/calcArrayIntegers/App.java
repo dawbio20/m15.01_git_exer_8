@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author manuel.molinamarin
+ * @author Manu Molina
  */
 public class App {
     
@@ -104,19 +104,23 @@ public class App {
         System.out.println("Finishing the application");        
     }
     
+     /**
+    * return if the number is correct
+    * @param String
+    * @return boolean, true if is correct, false if not
+    */
     public static boolean isNumeric(String str) {
         
-            boolean result = true;
-            if (str.trim().isEmpty()) {
-                result = false;
-            } else {
-                for (char c : str.toCharArray()) {
-                    if (!Character.isDigit(c)) {
-                        result = false;
-                    }
+        boolean result = true;
+        if (str.trim().isEmpty()) {
+            result = false;
+        } else {
+            for (char c : str.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    result = false;
                 }
             }
-            return result;
         }
-
+        return result;
+    }
 }
